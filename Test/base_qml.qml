@@ -1,0 +1,127 @@
+import QtQuick 2.12
+import QtQuick.Controls 2.12
+import QtWebEngine 1.0
+ApplicationWindow {
+id: window
+visible: true
+width:640
+height:480
+WebEngineView {
+id: webEngineView
+anchors.fill: parent
+}
+Component.onCompleted: {
+var html="<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN'
+'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+
+<html xmlns='http://www.w3.org/1999/xhtml'>
+
+<head>
+    <meta http-equiv='Content-Type' content='text/html; charset=utf-8' />
+    <style>
+        body {
+          margin: 2% auto;
+          max-width: 800px;
+          padding: 0 20px;
+        }
+        button{
+          padding: 2%;
+          margin: 2% auto;
+          width: 50%;
+          color: #fff;
+          background-color: #4c74b9;
+        }
+        button:hover{
+          background-color: #999;
+          color:#4c74b9
+        }
+        .main {
+          background-color: #888;
+          padding: 2%
+        }
+        .container {
+          border: 2px solid #dedede;
+          background-color: #f1f1f1;
+          border-radius: 5px;
+          padding: 10px;
+          margin: 10px 0;
+        }
+        .form {
+          padding: 4%;
+          width: 100%;
+          border-radius: 5px;
+          box-sizing: border-box;
+        }
+        
+        .darker {
+          border-color: #ccc;
+          background-color: #ddd;
+        }
+        
+        .container::after {
+          content: '';
+          clear: both;
+          display: table;
+        }
+        
+        .container img {
+          float: left;
+          max-width: 60px;
+          width: 100%;
+          margin-right: 20px;
+          border-radius: 50%;
+        }
+        
+        .container img.right {
+          float: right;
+          margin-left: 20px;
+          margin-right:0;
+        }
+        
+        .time-right {
+          float: right;
+          color: #aaa;
+        }
+        
+        .time-left {
+          float: left;
+          color: #999;
+        }
+        </style>
+</head>
+
+<body>
+  <div class='main'>
+    <div class='container'>
+        <img src='https://source.unsplash.com/160x90/?people' alt='Avatar' />
+        <p>Hello. How are you today?</p>
+        <span class='time-right'>11:00</span>
+    </div>
+
+    <div class='container darker'>
+        <img src='https://source.unsplash.com/160x90/?people' alt='Avatar' class='right' />
+        <p>Hey! I'm fine. Thanks for asking!</p>
+        <span class='time-left'>11:01</span>
+    </div>
+
+    <div class='container'>
+        <img src='https://source.unsplash.com/160x90/?people' alt='Avatar' />
+        <p>Sweet! So, what can we do for you today?</p>
+        <span class='time-right'>11:02</span>
+    </div>
+
+    <div class='container darker'>
+        <img src='https://source.unsplash.com/160x90/?people' alt='Avatar' class='right' />
+        <p>I will like to make some enquiries about my flight</p>
+        <span class='time-left'>11:05</span>
+    </div>
+    <input type='text' placeholder='Write your message...' class='form' />
+    <button>Send</button>
+  </div>
+
+</body>
+
+</html>"
+webEngineView.loadHtml(html)
+}
+}

@@ -106,10 +106,10 @@ def base_qml():
       
 
 def qml_base():
-     with open('./Tests/index.qml', 'r') as file:
+     with open('./Test/base_qml.qml', 'r') as file:
         data = file.read()
         f = re.findall("<html>(.*?)</html>", data, re.DOTALL)
-        new_file = open('./Tests/qml_html.xhtml', 'w')
+        new_file = open('./Test/qml_html.xhtml', 'w')
         new_file.write("<!DOCTYPE HTML PUBLIC '-//W3C//DTD HTML 4.01 Transitional//EN'>\n")
         new_file.write(str(f[0]))
     # line = open(, 'rb')
