@@ -55,14 +55,16 @@ def base_qml(base_file, output):
     :returns: converted xhtml file
     :rtype: unicode
     :raises FileNotFoundError: if the base file is not found
-    :raises ModuleNotFoundError: if the required dependency is not found
     """
-    with open(base_file, 'r') as file:
-        data = file.read().replace('"', "'")
-        new_file = open(output, 'w')
-        new_file.write("import QtQuick 2.12\nimport QtQuick.Controls 2.12\nimport QtWebEngine 1.0")
-        new_file.write("\nApplicationWindow {\nid: window\nvisible: true\nwidth:640\nheight:480\nWebEngineView {\nid: webEngineView\nanchors.fill: parent\n}")
-        new_file.write("Component.onCompleted: {\nvar html="+'"' +data +'"'+"\nwebEngineView.loadHtml(html)\n}\n}")
+    try:
+        with open(base_file, 'r') as file:
+            data = file.read().replace('"', "'")
+            new_file = open(output, 'w')
+            new_file.write("import QtQuick 2.12\nimport QtQuick.Controls 2.12\nimport QtWebEngine 1.0")
+            new_file.write("\nApplicationWindow {\nid: window\nvisible: true\nwidth:640\nheight:480\nWebEngineView {\nid: webEngineView\nanchors.fill: parent\n}")
+            new_file.write("Component.onCompleted: {\nvar html="+'"' +data +'"'+"\nwebEngineView.loadHtml(html)\n}\n}")
+    except FileNotFoundError:
+        print("File not Found")
     if __name__ == '__main__':
 
         QtCore.QCoreApplication.setAttribute(QtCore.Qt.AA_EnableHighDpiScaling)
@@ -76,4 +78,22 @@ def base_qml(base_file, output):
             sys.exit(-1)
 
         sys.exit(app.exec_())
+
+def qml_base(base_file, output):
+    """Generate a xHTML file from the generated QML file
+    :param str base_file: Unicode string or bytes(path to the generated qml file)
+    :param str output: output will be written to this specified path in xhtml format
+    :returns: converted xhtml file
+    :rtype: unicode
+    :raises FileNotFoundError: if the base file is not found
+    """
+    try:
+        with open(base_file, 'r') as file:
+            data = file.read()
+            f = re.findall("<html>(.*?)</html>", data, re.DOTALL)
+            new_file = open(output, 'w')
+            new_file.write("<!DOCTYPE HTML PUBLIC '-//W3C//DTD HTML 4.01 Transitional//EN'>\n")
+            new_file.write(str(f[0]))
+    except FileNotFoundError:
+        print("File not Found")
 
