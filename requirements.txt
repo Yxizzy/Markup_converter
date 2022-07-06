@@ -1,4 +1,4 @@
-lxml==4.6.5
+lxml==4.9.1
 PySide2===5.13.2
 pip===21.1
 setuptools===41.6.0
