@@ -3,4 +3,4 @@ PySide2===5.13.2
 pip===21.1
 setuptools===41.6.0
 shiboken2===5.13.2
-wheel===0.33.6
+wheel===0.38.1
